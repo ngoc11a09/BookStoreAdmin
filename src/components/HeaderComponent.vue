@@ -1,11 +1,13 @@
 <template>
-    <!-- :style="{ position: 'fixed', zIndex: 1, width: '100%' }" -->
-    <a-layout-header class="header">
-        <div class="logo"></div>
-        <a-menu v-model:selectedKeys="selectedKeys1" theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
-            <a-menu-item key="1"> nav 1</a-menu-item>
-            <a-menu-item key="2">nav 2</a-menu-item>
-            <a-menu-item key="3">nav 3</a-menu-item>
+    <a-layout-header class="header"
+        :style="{ backgroundColor: '#11252b', position: 'fixed', zIndex: 1, width: '100%' }">
+        <a-typography-text strong
+            :style="{ lineHeight: '64px', color: 'white', padding: '0 64px 0 0', borderRight: 'solid 1px gray' }">ADMIN
+            PAGE</a-typography-text>
+        <a-menu v-model:selectedKeys="selectedKeys1" mode="horizontal" theme="dark" :collapsed="false"
+            :style="{ lineHeight: '64px', backgroundColor: '#11252b', color: 'white' }">
+            <a-menu-item key="1">Home</a-menu-item>
+            <a-menu-item key="2">Account</a-menu-item>
         </a-menu>
     </a-layout-header>
 </template>
@@ -17,17 +19,13 @@ const selectedKeys1 = ref<string[]>(['1']);
 </script>
 
 <style scoped>
-#components-layout-demo-top-side-2 .logo {
-    float: left;
-    width: 120px;
-    height: 31px;
-    margin: 16px 24px 16px 0;
-    background: rgba(255, 255, 255, 0.3);
+.header {
+    display: flex;
+    flex-direction: row;
 }
 
-.ant-row-rtl #components-layout-demo-top-side-2 .logo {
-    float: right;
-    margin: 16px 0 16px 24px;
+.ant-menu-horizontal .ant-menu-submenu.ant-menu-submenu-inline {
+    width: 1000px;
 }
 
 .site-layout-background {
