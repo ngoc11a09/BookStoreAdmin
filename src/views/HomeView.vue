@@ -1,9 +1,41 @@
-<script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
+<!-- <template>
+  <div>
+    <button @click="handleSignOut">sign out</button>
+  </div>
+</template> -->
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <a-layout>
+    <header-component />
+    <a-layout>
+      <slider-component />
+      <a-layout style="padding: 0 24px 24px">
+        <a-breadcrumb style="margin: 16px 0">
+          <a-breadcrumb-item>Home</a-breadcrumb-item>
+          <a-breadcrumb-item>List</a-breadcrumb-item>
+          <a-breadcrumb-item>App</a-breadcrumb-item>
+        </a-breadcrumb>
+        <a-layout-content :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }">
+          Content
+        </a-layout-content>
+      </a-layout>
+    </a-layout>
+  </a-layout>
 </template>
+
+
+<script setup lang="ts">
+// import { useAuthStore } from '@/stores/auth.store';
+import HeaderComponent from '@/components/HeaderComponent.vue';
+import SliderComponent from '@/components/SliderComponent.vue';
+
+
+// const handleSignOut = () => {
+//   try {
+//     const authStore = useAuthStore()
+//     authStore.signOut()
+//   } catch (error) {
+//     alert('Fail to sign out')
+//   }
+// }
+</script>
