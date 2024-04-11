@@ -2,10 +2,11 @@
     <a-layout-header class="header"
         :style="{ backgroundColor: '#11252b', position: 'fixed', zIndex: 1, width: '100%' }">
         <a-typography-text strong
-            :style="{ lineHeight: '64px', color: 'white', padding: '0 64px 0 0', borderRight: 'solid 1px gray' }">ADMIN
-            PAGE</a-typography-text>
-        <a-menu v-model:selectedKeys="selectedKeys1" mode="horizontal" theme="dark" :collapsed="false"
-            :style="{ lineHeight: '64px', backgroundColor: '#11252b', color: 'white' }">
+            :style="{ lineHeight: '64px', color: 'white', borderRight: 'solid 1px gray', width: '15%' }">
+            ADMIN PAGE
+        </a-typography-text>
+        <a-menu v-model:selectedKeys="selectedKeys1" mode="horizontal" theme="dark"
+            :style="{ lineHeight: '64px', backgroundColor: '#11252b', color: 'white', width: '100%' }">
             <a-menu-item key="1">Home</a-menu-item>
             <a-menu-item key="2">Account</a-menu-item>
         </a-menu>

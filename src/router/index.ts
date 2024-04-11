@@ -6,6 +6,7 @@ import UserView from '@/views/User/UserView.vue'
 import BookView from '@/views/Book/BookView.vue'
 import AddUserView from '@/views/User/AddUserView.vue'
 import AddBookView from '@/views/Book/AddBookView.vue'
+import { useAuthStore } from '@/stores/auth.store'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,6 +49,21 @@ const router = createRouter({
       component: SignInView
     }
   ]
+})
+
+router.beforeEach(async (to) => {
+  const publicPages = ['/signin']
+  const authRequired = !publicPages.includes(to.path)
+  const auth = useAuthStore()
+  if (authRequired && !auth.user) {
+    alert("Failed! Please signin again")
+    auth.returnUrl = to.fullPath
+    return '/signin'
+  }
+
+  if (to.path === '/signin' && auth.user) {
+    return '/'
+  }
 })
 
 export default router

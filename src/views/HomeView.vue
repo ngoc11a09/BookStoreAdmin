@@ -1,9 +1,3 @@
-<!-- <template>
-  <div>
-    <button @click="handleSignOut">sign out</button>
-  </div>
-</template> -->
-
 <template>
   <a-layout>
     <header-component />
@@ -16,6 +10,7 @@
       </a-layout>
     </a-layout>
     <a-layout-footer style="text-align: center">
+      <button @click="handleSignOut">sign out</button>
       Ant Design ©2018 Created by Ant UED
     </a-layout-footer>
   </a-layout>
@@ -23,17 +18,17 @@
 
 
 <script setup lang="ts">
-// import { useAuthStore } from '@/stores/auth.store';
+import { useAuthStore } from '@/stores/auth.store';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import SliderComponent from '@/components/SliderComponent.vue';
 
 
-// const handleSignOut = () => {
-//   try {
-//     const authStore = useAuthStore()
-//     authStore.signOut()
-//   } catch (error) {
-//     alert('Fail to sign out')
-//   }
-// }
+const handleSignOut = () => {
+  try {
+    const authStore = useAuthStore()
+    authStore.signOut()
+  } catch (error) {
+    alert('Fail to sign out')
+  }
+}
 </script>

@@ -7,7 +7,8 @@ import { defineStore } from 'pinia'
 export const useAuthStore = defineStore({
   id: 'auth',
   state: () => ({
-    user: JSON.parse(localStorage.getItem(USER) || 'null')
+    user: JSON.parse(localStorage.getItem(USER) || 'null'),
+    returnUrl: null as string | null
   }),
 
   actions: {
@@ -17,7 +18,7 @@ export const useAuthStore = defineStore({
         this.user = user
         localStorage.setItem(USER, JSON.stringify(user))
         localStorage.setItem(ACCESS_TOKEN, accessToken)
-        router.push('/')
+        router.push(this.returnUrl || '/')
         return message
       } catch (error) {
         return Promise.reject(error)

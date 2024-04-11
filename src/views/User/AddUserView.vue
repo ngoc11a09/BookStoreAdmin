@@ -1,3 +1,7 @@
 <template>
-    <div>User add</div>
+    <user-form />
 </template>
+
+<script setup lang="ts">
+import UserForm from '@/components/UserForm.vue'
+</script>
