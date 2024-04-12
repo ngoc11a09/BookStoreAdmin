@@ -18,6 +18,7 @@ export const useAuthStore = defineStore({
         this.user = user
         localStorage.setItem(USER, JSON.stringify(user))
         localStorage.setItem(ACCESS_TOKEN, accessToken)
+
         router.push(this.returnUrl || '/')
         return message
       } catch (error) {

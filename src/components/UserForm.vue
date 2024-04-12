@@ -1,17 +1,16 @@
 <template>
-    <a-typography-title :style="{ textAlign: 'Left' }">Add user:</a-typography-title>
-    <a-form ref="formRef" @submit.prevent="handleSubmit" :model="formState" name="adduser" :label-col="labelCol"
-        :wrapper-col="wrapperCol" layout="horizontal" style="max-width: 1000px" :style="{ margin: '0 auto' }">
-
-        <a-form-item label="Username" name="username"
+    <a-form ref="formRef" @submit.prevent="emit('submit', formState)" :model="formState" name="adduser"
+        :label-col="labelCol" :wrapper-col="wrapperCol" layout="horizontal" style="max-width: 1000px"
+        :style="{ margin: '0 auto' }">
+        <a-form-item v-if="!editMode" label="Username" name="username"
             :rules="[{ required: true, message: 'Please input user\'s username!' }, { min: 4, max: 25, message: 'Length should be 4 to 25', trigger: 'blur' },]">
             <a-input v-model:value="formState.username" />
         </a-form-item>
-        <a-form-item label="Password" name="password"
+        <a-form-item v-if="!editMode" label="Password" name="password"
             :rules="[{ required: true, message: 'Please input user\'s password!' }, { min: 8, max: 25, message: 'Length should be 8 to 25', trigger: 'blur' },]">
             <a-input-password v-model:value="formState.password" />
         </a-form-item>
-        <a-form-item label="Email" name="email"
+        <a-form-item v-if="!editMode" label="Email" name="email"
             :rules="[{ required: true, message: 'Please input user\'s email!' }, { type: 'email', message: 'Invalid email!', trigger: 'blur' },]">
             <a-input v-model:value="formState.email" />
         </a-form-item>
@@ -40,7 +39,8 @@
         </a-form-item>
         <a-form-item label="Birthday" name="birthday"
             :rules="[{ required: true, message: 'Please input user\'s birthday!' }]">
-            <a-date-picker :format="['DD/MM/YYYY']" v-model:value="formState.birthday" :disabled-date="disabledDate" />
+            <a-date-picker :locale="locale" :valueFormat="'YYYY-MM-DDTHH:mm:ssZ'" :format="'DD/MM/YYYY'"
+                v-model:value="formState.birthday" :disabled-date="disabledDate" />
         </a-form-item>
         <a-form-item :wrapper-col="{ offset: 4, span: 14 }" :style="{ width: '100%' }">
             <a-flex vertical gap="small" class="center-btn">
@@ -51,21 +51,25 @@
         </a-form-item>
     </a-form>
 </template>
-<script lang="ts" setup>
-import { ref, reactive, toRaw } from 'vue';
+<script setup lang="ts">
+import { computed, onMounted, reactive, ref } from 'vue';
 import type { CascaderProps } from 'ant-design-vue';
-import type { IUserCreate } from '@/interfaces/user.interface';
-import { create } from '@/api/user.api';
+import type { IUser } from '@/interfaces/user.interface';
 import dayjs, { Dayjs } from 'dayjs';
+import locale from 'ant-design-vue/es/date-picker/locale/vi_VN'
+import { getOne } from '@/api/user.api';
 
-const formRef = ref()
+const emit = defineEmits(['submit'])
+const props = defineProps({
+    _id: String,
+})
 const disabledDate = (current: Dayjs) => {
     return current && current > dayjs().endOf('day');
 };
-
+const formRef = ref()
 const labelCol = { span: 4 };
 const wrapperCol = { span: 14 };
-const formState = reactive<IUserCreate>({
+const formState = reactive<IUser>({
     name: '',
     lastName: '',
     phone: '',
@@ -74,7 +78,7 @@ const formState = reactive<IUserCreate>({
     birthday: null,
     username: '',
     password: '',
-    email: ''
+    email: '',
 })
 const options: CascaderProps['options'] = ([
     {
@@ -120,17 +124,32 @@ const options: CascaderProps['options'] = ([
         ],
     }
 ]);
+const editMode = computed(() => {
+    return props._id !== undefined
+})
 
-const handleSubmit = async () => {
-    try {
-        await create(formState)
-        alert("Add a new user successfully")
-    } catch (error) {
-        alert("Failed to add new user")
+onMounted(async () => {
+    if (editMode.value) {
+        try {
+            const user = (await getOne(props._id as string)).user
+            formState.name = user.name
+            formState.lastName = user.lastName
+            formState.phone = user.phone
+            formState.gender = user.gender
+            formState.address = user.address
+            formState.birthday = user.birthday
+            formState.username = undefined
+            formState.password = undefined
+            formState.email = undefined
+        } catch (error) {
+            console.log(error)
+        }
     }
-}
+})
 
 const resetForm = () => {
+    console.log(editMode.value);
+
     formRef.value.resetFields();
 };
 

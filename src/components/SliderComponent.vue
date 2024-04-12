@@ -15,7 +15,7 @@
                     <span>View users list</span>
                 </a-menu-item>
                 <a-menu-item key="2">
-                    <router-link :to="{ name: 'user-add' }"> </router-link>
+                    <router-link :to="{ name: 'user:add' }"> </router-link>
                     <span>Add new user</span>
                 </a-menu-item>
             </a-sub-menu>
@@ -31,7 +31,7 @@
                     <span>View books list</span>
                 </a-menu-item>
                 <a-menu-item key="6">
-                    <router-link :to="{ name: 'book-add' }"> </router-link>
+                    <router-link :to="{ name: 'book:add' }"> </router-link>
                     <span>Add new book</span>
                 </a-menu-item>
             </a-sub-menu>

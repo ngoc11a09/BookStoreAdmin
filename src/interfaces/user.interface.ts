@@ -7,10 +7,10 @@ export interface IUserInfo {
     address: string[]
 }
 
-export interface IUserCreate {
-    email: string
-    password: string
-    username: string
+export interface IUser {
+    email: string | undefined
+    password: string | undefined
+    username: string | undefined
     name: string
     lastName: string
     birthday: Date | null
