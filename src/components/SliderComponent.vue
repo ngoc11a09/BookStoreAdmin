@@ -35,18 +35,6 @@
                     <span>Add new book</span>
                 </a-menu-item>
             </a-sub-menu>
-            <!-- <a-sub-menu key="sub3">
-                <template #title>
-                    <span>
-                        <notification-outlined />
-                        subnav 3
-                    </span>
-                </template>
-                <a-menu-item key="9">option9</a-menu-item>
-                <a-menu-item key="10">option10</a-menu-item>
-                <a-menu-item key="11">option11</a-menu-item>
-                <a-menu-item key="12">option12</a-menu-item>
-            </a-sub-menu> -->
         </a-menu>
     </a-layout-sider>
 </template>
@@ -57,4 +45,5 @@ import { TeamOutlined, BookOutlined } from '@ant-design/icons-vue';
 
 const selectedKeys2 = ref<string[]>([]);
 const openKeys = ref<string[]>([]);
+
 </script>
