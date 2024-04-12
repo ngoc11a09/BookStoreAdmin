@@ -1,5 +1,5 @@
 <template>
-    <a-typography-title :style="{ textAlign: 'left' }">Manage user:</a-typography-title>
+    <a-typography-title>Manage user:</a-typography-title>
     <a-button class="editable-add-btn" style="margin-bottom: 8px" @click="handleAdd">Add user</a-button>
     <a-table :columns="columns" :data-source="data" bordered :pagination="false" :customRow="(record: IUserRes, index: any) => {
         return {
@@ -8,7 +8,6 @@
             }
         }
     }">
-
     </a-table>
 </template>
 <script lang="ts" setup>
@@ -41,7 +40,6 @@ const columns = [
         key: 'email',
         width: '30%'
     },
-
 ];
 
 const data = ref<IUserRes[]>([])
@@ -60,6 +58,15 @@ onMounted(async () => {
 })
 </script>
 <style>
+.delete-btn:hover {
+    color: #D33A2C !important;
+    background-color: #FFE7E7 !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
 .editable-add-btn {
     margin-bottom: 8px;
 }

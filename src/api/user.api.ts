@@ -1,4 +1,4 @@
-import type { IUserCreate, IUserInfo } from "@/interfaces/user.interface"
+import type { IUser, IUserInfo } from "@/interfaces/user.interface"
 import api from "./api.interceptor"
 
 export interface IUserRes {
@@ -40,6 +40,10 @@ export const updateOne = (id: string, data: IUserInfo) => {
     return api.put(`/api/users/${id}`, data)
 }
 
-export const create = (data: IUserCreate) => {
+export const create = (data: IUser) => {
     return api.post(`/api/users/add`, data)
+}
+
+export const deleteOne = (id: string) => {
+    return api.delete(`/api/users/${id}`)
 }
