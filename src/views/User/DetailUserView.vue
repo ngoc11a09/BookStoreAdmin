@@ -9,6 +9,7 @@
 import { updateOne, type IGetOneUserRes } from '@/api/user.api';
 import UserForm from '@/components/UserForm.vue';
 import type { IUserInfo } from '@/interfaces/user.interface';
+import router from '@/router';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 
@@ -22,6 +23,7 @@ const handleSubmit = async (data: IUserInfo) => {
     try {
         await updateOne(_id as string, data)
         alert("Update user successfully")
+        router.push('/users')
     } catch (error: any) {
         alert(error.message)
     }
