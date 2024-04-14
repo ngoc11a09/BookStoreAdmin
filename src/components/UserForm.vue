@@ -181,7 +181,7 @@ onMounted(async () => {
 })
 
 const resetForm = () => {
-    if (editMode) {
+    if (editMode.value) {
         formState.name = user.name
         formState.lastName = user.lastName
         formState.phone = user.phone
@@ -205,6 +205,7 @@ const handleSubmit = async () => {
         });
     if (res === 0) {
         emit('submit', formState)
+        formRef.value.resetFields()
     }
 }
 </script>
