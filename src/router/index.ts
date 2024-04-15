@@ -9,6 +9,7 @@ import AddBookView from '@/views/Book/AddBookView.vue'
 import { useAuthStore } from '@/stores/auth.store'
 import ForbiddenView from '@/views/ForbiddenView.vue'
 import DetailUserView from '@/views/User/DetailUserView.vue'
+import DetailBookView from '@/views/Book/DetailBookView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,6 +49,11 @@ const router = createRouter({
           path: 'books',
           name: 'book',
           component: BookView
+        },
+        {
+          path: 'books/:id',
+          name: 'book:id',
+          component: DetailBookView
         },
         {
           path: 'books/add',

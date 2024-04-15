@@ -37,13 +37,25 @@ export const getOne = (id: string) => {
 }
 
 export const updateOne = (id: string, data: IUserInfo) => {
-    return api.put(`/api/users/${id}`, data)
+    try {
+        return api.put(`/api/users/${id}`, data)
+    } catch (error) {
+        return Promise.reject(error)
+    }
 }
 
 export const create = (data: IUser) => {
-    return api.post(`/api/users/add`, data)
+    try {
+        return api.post(`/api/users/add`, data)
+    } catch (error) {
+        return Promise.reject(error)
+    }
 }
 
 export const deleteOne = (id: string) => {
-    return api.delete(`/api/users/${id}`)
+    try {
+        return api.delete(`/api/users/${id}`)
+    } catch (error) {
+        return Promise.reject(error)
+    }
 }
