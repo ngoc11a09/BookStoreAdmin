@@ -8,9 +8,12 @@
             }
         }
     }">
-        <template #bodyCell="{ column, text } : { column: any, text: IPublisher }">
+        <template #bodyCell="{ column, text } : { column: any, text: any }">
             <template v-if="column.dataIndex === 'publisher'">
                 <span>{{ text.name }}</span>
+            </template>
+            <template v-else-if="column.dataIndex === 'createdAt'">
+                <span>{{ formatDateTime(text) }}</span>
             </template>
         </template>
     </a-table>
@@ -20,8 +23,12 @@ import { getAllBooks, type IBookRes } from '@/api/book.api';
 import { getAllPublishers } from '@/api/publisher';
 import type { IPublisher } from '@/interfaces/publisher.interface';
 import router from '@/router';
+import { format } from 'date-fns';
 import { onMounted, ref } from 'vue';
 
+const formatDateTime = (date: string) => {
+    return format(new Date(date), 'dd/MM/yyyy HH:mm:ss');
+};
 const columns = [
     {
         title: 'Code',
@@ -90,6 +97,7 @@ onMounted(async () => {
                 const publisher = processedPublisher[item.publishCode]
                 return { ...item, publisher }
             })
+
         } catch (error) {
             alert('Cannot get publishers. Please try again')
         }

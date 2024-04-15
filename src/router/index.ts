@@ -10,6 +10,9 @@ import { useAuthStore } from '@/stores/auth.store'
 import ForbiddenView from '@/views/ForbiddenView.vue'
 import DetailUserView from '@/views/User/DetailUserView.vue'
 import DetailBookView from '@/views/Book/DetailBookView.vue'
+import BorrowView from '@/views/Borrow/BorrowView.vue'
+import AddBorrowView from '@/views/Borrow/AddBorrowView.vue'
+import DetailBorrowView from '@/views/Borrow/DetailBorrowView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -59,7 +62,22 @@ const router = createRouter({
           path: 'books/add',
           name: 'book:add',
           component: AddBookView
-        }
+        },
+        {
+          path: 'borrows',
+          name: 'borrow',
+          component: BorrowView,
+        },
+        {
+          path: 'borrows/add',
+          name: 'borrow:add',
+          component: AddBorrowView
+        },
+        {
+          path: 'borrows/:id',
+          name: 'borrow:id',
+          component: DetailBorrowView
+        },
       ]
     },
     {

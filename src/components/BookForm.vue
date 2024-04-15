@@ -39,10 +39,10 @@
 <script setup lang="ts">
 import { computed, onBeforeMount, onMounted, reactive, ref } from 'vue';
 import type { Rule } from 'ant-design-vue/es/form';
-import type { IBookInfo } from '@/interfaces/book.interface';
 import { getOne } from '@/api/book.api';
 import { getAllPublishers } from '@/api/publisher';
 import type { IPublisher } from '@/interfaces/publisher.interface';
+import type { IBook } from '@/interfaces/book.interface';
 
 const emit = defineEmits(['submit'])
 const props = defineProps({
@@ -52,7 +52,7 @@ const props = defineProps({
 const formRef = ref()
 const labelCol = { span: 5 };
 const wrapperCol = { span: 14 };
-const formState = reactive<IBookInfo>({
+const formState = reactive<IBook>({
     code: '',
     title: '',
     price: null,
@@ -114,7 +114,7 @@ const editMode = computed(() => {
     return props._id !== undefined
 })
 let publishers = ref<IPublisher[]>()
-let book = ref<IBookInfo>({} as IBookInfo)
+let book = ref<IBook>({} as IBook)
 
 onBeforeMount(async () => {
     try {

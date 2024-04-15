@@ -31,7 +31,7 @@
             <a-cascader :options="options" v-model:value="formState.address" />
         </a-form-item>
         <a-form-item label="Birthday" name="birthday">
-            <a-date-picker :locale="locale" :valueFormat="'YYYY-MM-DDTHH:mm:ssZ'" :format="'DD/MM/YYYY'"
+            <a-date-picker :valueFormat="'YYYY-MM-DDTHH:mm:ssZ'" :format="'DD/MM/YYYY'"
                 v-model:value="formState.birthday" :disabled-date="disabledDate" />
         </a-form-item>
         <a-form-item :wrapper-col="{ offset: 4, span: 14 }" :style="{ width: '100%' }">
@@ -48,7 +48,6 @@ import { computed, onMounted, reactive, ref } from 'vue';
 import type { CascaderProps } from 'ant-design-vue';
 import type { IUser } from '@/interfaces/user.interface';
 import dayjs, { Dayjs } from 'dayjs';
-import locale from 'ant-design-vue/es/date-picker/locale/vi_VN'
 import { getOne, type IUserRes } from '@/api/user.api';
 import type { Rule } from 'ant-design-vue/es/form';
 

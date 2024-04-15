@@ -1,17 +1,5 @@
 export interface IBook {
-    _id: string;
-    code: string;
-    title: string;
-    price: number;
-    quantity: number;
-    publishYear: number;
-    publisher: string;
-    author: string;
-    createdAt: Date
-    updatedAt: Date
-}
-
-export interface IBookInfo {
+    _id?: string;
     code: string;
     title: string;
     price: number | null;
@@ -19,4 +7,6 @@ export interface IBookInfo {
     publishYear: number | null;
     publishCode: string;
     author: string;
+    createdAt?: Date
+    updatedAt?: Date
 }
