@@ -89,18 +89,6 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next: Function) => {
-  // const publicPages = ['/signin']
-  // const authRequired = !publicPages.includes(to.path)
-  // const auth = useAuthStore()
-  // if (authRequired && !auth.user) {
-  //   alert("Failed! Please signin again")
-  //   auth.returnUrl = to.fullPath
-  //   return '/signin'
-  // }
-
-  // if (to.path === '/signin' && auth.user) {
-  //   return '/'
-  // }
   const auth = useAuthStore()
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!auth.user) {

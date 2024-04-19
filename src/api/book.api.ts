@@ -1,4 +1,4 @@
-import type { IBook, IBookInfo } from "@/interfaces/book.interface"
+import type { IBook } from "@/interfaces/book.interface"
 import api from "./api.interceptor"
 import type { IPublisher } from "@/interfaces/publisher.interface"
 
@@ -37,9 +37,9 @@ export const getOne = (id: string) => {
     }
 }
 
-export const updateOne = (id: string, data: IBookInfo) => {
+export const updateOne = (id: string, data: IBook) => {
     try {
-        return api.put(`/api/books/${id}`, data)
+        return api.patch(`/api/books/${id}`, data)
     } catch (error) {
         return Promise.reject(error)
     }

@@ -62,7 +62,7 @@ const formState = reactive<IBook>({
     author: '',
 })
 const checkNum = async (_rule: Rule, value: number) => {
-    if (!value) {
+    if (!value && value !== 0) {
         return Promise.reject('This field is required');
     }
     if (!Number.isInteger(value)) {

@@ -30,7 +30,7 @@ export const getOne = (id: string) => {
 
 export const updateOne = (id: string, data: IBorrowRes) => {
     try {
-        return api.put(`/api/borrows/${id}`, data)
+        return api.patch(`/api/borrows/${id}`, data)
     } catch (error) {
         return Promise.reject(error)
     }

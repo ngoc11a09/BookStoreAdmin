@@ -32,7 +32,7 @@ export const getOne = (id: string) => {
 
 export const updateOne = (id: string, data: IPublisher) => {
     try {
-        return api.put(`/api/publishers/${id}`, data)
+        return api.patch(`/api/publishers/${id}`, data)
     } catch (error) {
         return Promise.reject(error)
     }

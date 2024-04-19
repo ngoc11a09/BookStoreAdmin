@@ -17,4 +17,5 @@ export interface IUser {
     gender: '0' | '1' | 'unknow'
     phone: string
     address: string[]
+    role?: 'user' | 'admin'
 }

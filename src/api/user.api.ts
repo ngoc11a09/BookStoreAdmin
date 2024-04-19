@@ -38,15 +38,16 @@ export const getOne = (id: string) => {
 
 export const updateOne = (id: string, data: IUserInfo) => {
     try {
-        return api.put(`/api/users/${id}`, data)
+        return api.patch(`/api/users/${id}`, data)
     } catch (error) {
         return Promise.reject(error)
     }
 }
 
 export const create = (data: IUser) => {
+    const role = data.role || 'user'
     try {
-        return api.post(`/api/users/add`, data)
+        return api.post(`/api/users/add`, { ...data, role })
     } catch (error) {
         return Promise.reject(error)
     }
