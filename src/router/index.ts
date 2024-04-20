@@ -18,16 +18,6 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/:pathMatch(.*)',
-      name: 'not-found',
-      component: NotFoundView
-    },
-    {
-      path: '/forbidden',
-      name: 'forbidden',
-      component: ForbiddenView
-    },
-    {
       path: '/',
       name: 'home',
       component: HomeView,
@@ -84,7 +74,17 @@ const router = createRouter({
       path: '/signin',
       name: 'signin',
       component: SignInView
-    }
+    },
+    {
+      path: '/:pathMatch(.*)',
+      name: 'not-found',
+      component: NotFoundView
+    },
+    {
+      path: '/forbidden',
+      name: 'forbidden',
+      component: ForbiddenView
+    },
   ]
 })
 

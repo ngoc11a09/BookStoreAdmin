@@ -1,8 +1,8 @@
 <template>
     <a-layout-header class="header"
         :style="{ backgroundColor: '#11252b', position: 'fixed', zIndex: 1, width: '100%' }">
-        <a-typography-text strong
-            :style="{ lineHeight: '64px', color: 'white', borderRight: 'solid 1px gray', width: '15%' }">
+        <a-typography-text strong :style="{ lineHeight: '64px', color: 'white', borderRight: 'solid 1px gray' }"
+            class="title">
             ADMIN PAGE
         </a-typography-text>
         <a-menu v-model:selectedKeys="selectedKeys1" mode="horizontal" theme="dark"
@@ -25,6 +25,12 @@ const selectedKeys1 = ref<string[]>(['1']);
 .header {
     display: flex;
     flex-direction: row;
+    width: '10%';
+}
+
+.title {
+    display: inline-block;
+    width: 134px;
 }
 
 .ant-menu-horizontal .ant-menu-submenu.ant-menu-submenu-inline {

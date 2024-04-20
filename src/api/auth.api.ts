@@ -4,7 +4,8 @@ import api from './api.interceptor'
 export interface ISignInRes {
   message: string
   user: {
-    userId: string
+    _id: string,
+    email: string,
     role: 'admin' | 'user'
     username: string
   }
